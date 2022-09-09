@@ -29,23 +29,30 @@ class PostularVacante extends Component
         // Si hay errores se imprimen en pantalla
         $datos = $this->validate();
 
-        // Almacenar el CV
-        $cv = $this->cv->store('public/cv');
-        $datos['cv'] = str_replace('public/cv/', '', $cv);
+        // Validar que el usuario no haya postulado a la vacante
+        if($this->vacante->candidatos()->where('user_id', auth()->user()->id)->count() > 0) {
+            // Crear el mensaje de error
+            session()->flash('error', 'Ya has postulado anteriormente a esta vacante');
+        }
+        else{
+            // Almacenar el CV
+            $cv = $this->cv->store('public/cv');
+            $datos['cv'] = str_replace('public/cv/', '', $cv);
 
-        // Crear el candidato a la vacante
-        $this->vacante->candidatos()->create([
-            'user_id' => auth()->user()->id,
-            'cv' => $datos['cv']
-        ]);
-        
-        // Crear notificación y enviar el email
-        $this->vacante->reclutador->notify(new NuevoCandidato( $this->vacante->id, $this->vacante->titulo, auth()->user()->id ));
+            // Crear el candidato a la vacante
+            $this->vacante->candidatos()->create([
+                'user_id' => auth()->user()->id,
+                'cv' => $datos['cv']
+            ]);
 
-        // Mostrar al usuario un alerta de éxito
-        session()->flash('mensaje', 'Tu información se envió correctamente, ¡Suerte!');
+            // Crear notificación y enviar el email
+            $this->vacante->reclutador->notify(new NuevoCandidato( $this->vacante->id, $this->vacante->titulo, auth()->user()->id ));
 
-        return redirect()->back();
+            // Mostrar al usuario un alerta de éxito
+            session()->flash('mensaje', 'Tu información se envió correctamente, ¡Suerte!');
+
+            return redirect()->back();
+        }
     }
 
     public function render()

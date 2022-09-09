@@ -1,6 +1,18 @@
 <div class="bg-gray-100 p-5 mt-10 flex flex-col justify-center items-center">
     <h3 class="text-center text-2xl font-bold my-4">Postularme a esta vacante</h3>
 
+    @if(session()->has('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <p class="font-bold">
+                ¡Vaya!
+            </p>
+
+            <span class="block sm:inline">
+                {{ session('error') }}
+            </span>
+        </div>
+    @endif
+
     @if(session()->has('mensaje'))
         <p class="uppercase border border-green-600 bg-green-100 text-green-600 font-bold p-2 rounded text-sm">
             {{ session('mensaje') }}
