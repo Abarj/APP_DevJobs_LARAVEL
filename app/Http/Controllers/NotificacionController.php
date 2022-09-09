@@ -16,11 +16,14 @@ class NotificacionController extends Controller
     {
         $notificaciones = auth()->user()->unreadNotifications;
 
+        $historialNotificaciones = auth()->user()->readNotifications;
+
         // Limpiar notificaciones
         auth()->user()->unreadNotifications->markAsRead();
 
         return view('notificaciones.index', [
-            'notificaciones' => $notificaciones
+            'notificaciones' => $notificaciones,
+            'historialNotificaciones' => $historialNotificaciones
         ]);
     }
 }
