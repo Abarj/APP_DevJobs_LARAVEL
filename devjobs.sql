@@ -11,7 +11,7 @@ CREATE TABLE `candidatos` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
   `vacante_id` bigint unsigned NOT NULL,
-  `cv` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cv` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -23,7 +23,7 @@ CREATE TABLE `candidatos` (
 
 CREATE TABLE `categorias` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoria` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -31,7 +31,7 @@ CREATE TABLE `categorias` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -43,15 +43,15 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `notifications` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notifiable_id` bigint unsigned NOT NULL,
   `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
@@ -62,17 +62,17 @@ CREATE TABLE `notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `salarios` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `salario` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salario` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -94,10 +94,10 @@ CREATE TABLE `salarios` (
 
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -110,13 +110,13 @@ CREATE TABLE `vacantes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `salario_id` bigint unsigned NOT NULL,
   `categoria_id` bigint unsigned NOT NULL,
-  `empresa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `empresa` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_limite` date NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `publicado` int NOT NULL DEFAULT '1',
   `user_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
